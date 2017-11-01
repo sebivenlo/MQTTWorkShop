@@ -8,11 +8,11 @@ package chatbox;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
 
 /**
  *
@@ -29,7 +29,7 @@ public class FXMLDocumentController implements Initializable, ActionListener {
     PAHOClient paho;
     @FXML
     private Label label;
-    
+
     @FXML
     private ListView lvChatLog;
 
@@ -40,16 +40,15 @@ public class FXMLDocumentController implements Initializable, ActionListener {
         if (!tbTopic.getText().isEmpty()) {
             counter++;
             paho.Publish(tbTopic.getText(), tbMessage.getText());
-            lvChatLog.getItems().add(tbMessage.getText());
+            //lvChatLog.getItems().add(tbMessage.getText());
             tbMessage.clear();
-        }
-        else{
+        } else {
             System.out.println("Please enter a topic");
         }
     }
-    
+
     ChatCallback cbc;
-    
+
     @FXML
     private void Subscribe(ActionEvent event) {
         cbc = new ChatCallback();
@@ -67,7 +66,6 @@ public class FXMLDocumentController implements Initializable, ActionListener {
 
         paho = new PAHOClient("tcp://localhost:1883", "Henk");
         paho.Connect();
-        
 
     }
 
@@ -78,7 +76,16 @@ public class FXMLDocumentController implements Initializable, ActionListener {
 
     @Override
     public void actionPerformed(java.awt.event.ActionEvent e) {
-       MessageEvent ev = (MessageEvent)e;
+        MessageEvent ev = (MessageEvent) e;
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                lvChatLog.getItems().add(ev.topic + " : " + ev.message);
+            }
+        }
+        );
+
     }
 
 }

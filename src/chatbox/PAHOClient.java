@@ -64,7 +64,7 @@ public class PAHOClient {
     public void Subscribe(String topic, ChatCallback cb) {
         try {
             sampleClient.subscribe(topic);
-            sampleClient.setCallback(new ChatCallback());
+            sampleClient.setCallback(cb);
         } catch (MqttException ex) {
             System.out.println(ex);
         }
