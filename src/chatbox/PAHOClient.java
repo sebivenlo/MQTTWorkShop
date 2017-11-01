@@ -23,17 +23,15 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class PAHOClient {
 
     int qos = 2;
-    String broker = "tcp://localhost:1883";
-    String clientId = "JavaSample";
+    String broker, clientId;
     MemoryPersistence persistence = new MemoryPersistence();
     MqttClient sampleClient;
 
     public PAHOClient(String broker, String clientID) {
         try {
-            this.broker = broker;
+            this.broker = "tcp://" + broker + ":1883";
             this.clientId = clientID;
-
-            sampleClient = new MqttClient(broker, clientId, persistence);
+            sampleClient = new MqttClient(this.broker, this.clientId, persistence);
 
         } catch (MqttException ex) {
             Logger.getLogger(PAHOClient.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,7 +41,8 @@ public class PAHOClient {
     public void Publish(String topic, String messagetext) {
         try {
             System.out.println("Publishing message: " + messagetext);
-            MqttMessage message = new MqttMessage(messagetext.getBytes());
+            String completeMessage = this.clientId + " : " + messagetext;
+            MqttMessage message = new MqttMessage(completeMessage.getBytes());
             message.setQos(qos);
             sampleClient.publish(topic, message);
             System.out.println("Message published");

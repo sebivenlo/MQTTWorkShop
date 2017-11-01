@@ -21,7 +21,25 @@ import javafx.scene.control.*;
 public class FXMLDocumentController implements Initializable, ActionListener {
 
     @FXML
+    Button btnSend;
+    
+    @FXML
+    Button btnConnect;
+    
+    @FXML
+    Button btnDisconnect;
+    
+    @FXML
+    Button btnJoin;
+    
+    @FXML
     TextField tbTopic;
+    
+    @FXML
+    TextField tbUserId;
+    
+    @FXML
+    TextField tbIpAdress;
 
     @FXML
     TextArea tbMessage;
@@ -37,13 +55,13 @@ public class FXMLDocumentController implements Initializable, ActionListener {
 
     @FXML
     private void Publish(ActionEvent event) {
-        if (!tbTopic.getText().isEmpty()) {
+        if (!tbTopic.getText().isEmpty()&&!tbMessage.getText().isEmpty()) {
             counter++;
             paho.Publish(tbTopic.getText(), tbMessage.getText());
             //lvChatLog.getItems().add(tbMessage.getText());
             tbMessage.clear();
         } else {
-            System.out.println("Please enter a topic");
+            System.out.println("Please enter a message and a topic");
         }
     }
 
@@ -51,27 +69,42 @@ public class FXMLDocumentController implements Initializable, ActionListener {
 
     @FXML
     private void Subscribe(ActionEvent event) {
+        if(tbTopic.getText().isEmpty()){
+        return;}
         cbc = new ChatCallback();
         paho.Subscribe(tbTopic.getText(), cbc);
         cbc.addListener(this);
     }
 
+    
     @FXML
     private void Disconnect(ActionEvent event) {
         paho.Disconnect();
+        switchButtons(false);
     }
 
     @FXML
     private void Connect(ActionEvent event) {
-
-        paho = new PAHOClient("tcp://localhost:1883", "Henk");
+        
+        if(this.tbIpAdress.getText().isEmpty()){
+            return;
+        }
+        paho = new PAHOClient(this.tbIpAdress.getText(),this.tbUserId.getText());
         paho.Connect();
+        switchButtons(true);
+        
+    }
 
+    private void switchButtons(boolean enabled ) {
+        this.btnConnect.disableProperty().set(enabled);
+        this.btnDisconnect.disableProperty().set(!enabled);
+        this.btnSend.disableProperty().set(!enabled);
+        this.btnJoin.disableProperty().set(!enabled);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        switchButtons(false);
     }
 
     @Override

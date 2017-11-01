@@ -19,6 +19,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
  */
 public class ChatCallback implements MqttCallback {
 
+    
     @Override
     public void connectionLost(Throwable thrwbl) {
         //System.out.println("Connection was lost");

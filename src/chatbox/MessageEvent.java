@@ -19,7 +19,7 @@ public class MessageEvent extends ActionEvent{
     public MessageEvent(Object source, int id, String command, String topic, String message) {
         super(source, id, command);
         this.topic = topic;
-        this.message = message;
+        this.message = message;        
     }
     
 
