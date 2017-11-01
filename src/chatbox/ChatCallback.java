@@ -27,11 +27,11 @@ public class ChatCallback implements MqttCallback {
     @Override
     public void messageArrived(String string, MqttMessage mm) throws Exception {
         System.out.println(string + " : " + mm.toString());
-        //MessageEvent me = new MessageEvent(this, 0, "", string, mm.toString());
+        MessageEvent me = new MessageEvent(this, 0, "", string, mm.toString());
         //hier crasht de app bij het doorsturen. waarschijnlijk gaat er iets mis in het vuren van dit event
         
-        //FXMLDocumentController Listener = (FXMLDocumentController)xxxListeners.getListenerList()[0];
-        //Listener.actionPerformed(me);
+        FXMLDocumentController Listener = (FXMLDocumentController)xxxListeners.getListenerList()[1];
+        Listener.actionPerformed(me);
     }
 
     @Override
