@@ -16,7 +16,7 @@ import javafx.scene.control.*;
 
 /**
  *
- * @author Tom
+ * @author Tom & Herm
  */
 public class FXMLDocumentController implements Initializable, ActionListener {
 
@@ -44,57 +44,64 @@ public class FXMLDocumentController implements Initializable, ActionListener {
     @FXML
     TextArea tbMessage;
 
-    PAHOClient paho;
     @FXML
     private Label label;
 
     @FXML
     private ListView lvChatLog;
 
-    int counter;
-
-    @FXML
-    private void Publish(ActionEvent event) {
-        if (!tbTopic.getText().isEmpty()&&!tbMessage.getText().isEmpty()) {
-            counter++;
-            paho.Publish(tbTopic.getText(), tbMessage.getText());
-            //lvChatLog.getItems().add(tbMessage.getText());
-            tbMessage.clear();
-        } else {
-            System.out.println("Please enter a message and a topic");
-        }
-    }
-
-    ChatCallback cbc;
-
-    @FXML
-    private void Subscribe(ActionEvent event) {
-        if(tbTopic.getText().isEmpty()){
-        return;}
-        cbc = new ChatCallback();
-        paho.Subscribe(tbTopic.getText(), cbc);
-        cbc.addListener(this);
-    }
-
+    PAHOClient client;
+    ChatCallback chatCallBack;
     
-    @FXML
-    private void Disconnect(ActionEvent event) {
-        paho.Disconnect();
-        switchButtons(false);
-    }
-
+    
+    /**
+     * Connect to the PAHOClient which you just implemented. 
+     * @param event event is being parsed by the GUI.
+     * use tbIpAdress and tbUserId from the gui to initialize the client.
+     * check if IpAdress is empty before trying to connect. (prevent crash).
+     */
     @FXML
     private void Connect(ActionEvent event) {
-        
-        if(this.tbIpAdress.getText().isEmpty()){
-            return;
-        }
-        paho = new PAHOClient(this.tbIpAdress.getText(),this.tbUserId.getText());
-        paho.Connect();
+        //TODO 2.0 implement connect. 
         switchButtons(true);
+    }
+    
+    /**
+     * Disconnect from the PAHOClient.
+     * @param event event is being parsed by the GUI. 
+     */
+    @FXML
+    private void Disconnect(ActionEvent event) {
+        //TODO 2.1 same as in the previous disconnect just call the method.
+        switchButtons(false);
+    }
+    
+    /**
+     * Subscribe to a Topic.
+     * @param event event is being parsed by the GUI.
+     * Subscribe to the topic that is set in the gui. This is stored in the tbTopic variable.
+     * Just like with the connect implementation, please check if the topic is filled before subscribing to null.
+     */
+    @FXML
+    private void Subscribe(ActionEvent event) {
+        //TODO 2.2
+    }
+    
+    /**
+     * Publish to an topic.
+     * @param event event is being parsed by the GUI.
+     * publish to the topic entered. 
+     * make sure the text in tbMessage and tbTopic is not empty.
+     */
+    @FXML
+    private void Publish(ActionEvent event) {
+        //TODO 2.3
         
     }
-
+    /**
+     * function disabling buttons whenever needed.
+     * @param enabled 
+     */
     private void switchButtons(boolean enabled ) {
         this.btnConnect.disableProperty().set(enabled);
         this.btnDisconnect.disableProperty().set(!enabled);

@@ -14,34 +14,36 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
- *
- * @author Tom
+ * call back for the chat box.
+ * provides functionality for updating the chat box when new messages arrive.
+ * @author Tom & Herm
  */
 public class ChatCallback implements MqttCallback {
 
+    /**
+     * EventListnerList
+     */
+    EventListenerList xxxListeners = new EventListenerList();
     
     @Override
     public void connectionLost(Throwable thrwbl) {
-        //System.out.println("Connection was lost");
+        System.out.println("Connection was lost");
     }
 
     @Override
     public void messageArrived(String string, MqttMessage mm) throws Exception {
         System.out.println(string + " : " + mm.toString());
         MessageEvent me = new MessageEvent(this, 0, "", string, mm.toString());
-        //hier crasht de app bij het doorsturen. waarschijnlijk gaat er iets mis in het vuren van dit event
-        
+         
         FXMLDocumentController Listener = (FXMLDocumentController)xxxListeners.getListenerList()[1];
         Listener.actionPerformed(me);
     }
 
     @Override
     public void deliveryComplete(IMqttDeliveryToken imdt) {
-        System.out.println("Message Delivery Completed");
         
     }
 
-    EventListenerList xxxListeners = new EventListenerList();
 
     public void addListener(EventListener listener) {
         xxxListeners.add(EventListener.class, listener);

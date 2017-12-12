@@ -23,63 +23,65 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class PAHOClient {
 
     int qos = 2;
-    String broker, clientId;
+    String ipAdress, clientId;
     MemoryPersistence persistence = new MemoryPersistence();
-    MqttClient sampleClient;
+    MqttClient Client;
 
-    public PAHOClient(String broker, String clientID) {
-        try {
-            this.broker = "tcp://" + broker + ":1883";
-            this.clientId = clientID;
-            sampleClient = new MqttClient(this.broker, this.clientId, persistence);
+    /**
+     * Constructor for the MQTTClient. the MqttClient should be initialized
+     * using the ipAdress string and clientID string. please note, that the
+     * ipAdress should be prefixed with "tcp://" and has to connect to port
+     * 1883.
+     *
+     * @param ipAdress ip adress the client should connect to
+     * @param clientID the name the user gets.
+     */
+    public PAHOClient(String ipAdress, String clientID) {
 
-        } catch (MqttException ex) {
-            Logger.getLogger(PAHOClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //TODO 1.0 implement Constructor
     }
 
-    public void Publish(String topic, String messagetext) {
-        try {
-            System.out.println("Publishing message: " + messagetext);
-            String completeMessage = this.clientId + " : " + messagetext;
-            MqttMessage message = new MqttMessage(completeMessage.getBytes());
-            message.setQos(qos);
-            sampleClient.publish(topic, message);
-            System.out.println("Message published");
-        } catch (MqttException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    public void Disconnect() {
-        try {
-            sampleClient.disconnect();
-            System.out.println("Disconnected");
-        } catch (MqttException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    public void Subscribe(String topic, ChatCallback cb) {
-        try {
-            sampleClient.subscribe(topic);
-            sampleClient.setCallback(cb);
-        } catch (MqttException ex) {
-            System.out.println(ex);
-        }
-    }
-
+    /**
+     * Connect to the Client. a connection needs connection options Tip : create
+     * a clean session ( using the MqttConnectOptions )
+     */
     public void Connect() {
-        try {
+        //TODO 1.1 connect to the client
 
-            MqttConnectOptions connOpts = new MqttConnectOptions();
-            connOpts.setCleanSession(true);
-            System.out.println("Connecting to broker: " + broker);
-            sampleClient.connect(connOpts);
-            System.out.println("Connected");
-
-        } catch (MqttException ex) {
-            System.out.println("Error while connecting. \n stacktrace was:\n" + ex);
-        }
     }
+
+    /**
+     * Disconnect from the Client. This is a straight-forward method. don't over
+     * think just close the connection.
+     */
+    public void Disconnect() {
+        //TODO 1.2 implement Disconnect
+    }
+
+    /**
+     * Subscribe to a Topic.
+     * @param topic topic to subscribe to
+     * @param callBack ChatCallBack, to handle messages that arrive from that
+     * topic. make sure that the client is subscribed the topic. don't forget to
+     * add a callback to that client for new messages.
+     */
+    public void Subscribe(String topic, ChatCallback callBack) {
+        //TODO 1.3 implement Subscribe
+    }
+    
+    /**
+     * Method to publish a message to a topic.
+     *
+     * @param topic group in which the message should be sent.
+     * @param messagetext actual message that should be sent. Please make sure
+     * that your message will look like:
+     * <TOPIC> : <CLIENTID> : <MESSAGE>
+     */
+    public void Publish(String topic, String messagetext) {
+        MqttMessage message;
+        //TODO 1.4 Implement Publish   
+    }
+
+    
+
 }
