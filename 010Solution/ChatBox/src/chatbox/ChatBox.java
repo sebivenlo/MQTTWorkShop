@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Tom
+ * @author Tom & Herm
  */
 public class ChatBox extends Application {
     
