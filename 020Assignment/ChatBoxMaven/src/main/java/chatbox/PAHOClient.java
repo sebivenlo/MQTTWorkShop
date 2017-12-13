@@ -31,8 +31,8 @@ public class PAHOClient {
      * Constructor for the MQTTClient. the MqttClient should be initialized
      * using the ipAdress string and clientID string. please note, that the
      * ipAdress should be prefixed with "tcp://" and has to connect to port
-     * 1883.
-     *
+     * 1883. (if you want to connect to a different host it might be possible
+     * that the port has to change aswell!)
      * @param ipAdress ip adress the client should connect to
      * @param clientID the name the user gets.
      */

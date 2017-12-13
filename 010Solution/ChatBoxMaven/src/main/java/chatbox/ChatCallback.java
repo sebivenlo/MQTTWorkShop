@@ -42,7 +42,6 @@ public class ChatCallback implements MqttCallback {
 
     @Override
     public void deliveryComplete(IMqttDeliveryToken imdt) {
-        throw new NotImplementedException();
     }
 
     EventListenerList xxxListeners = new EventListenerList();
