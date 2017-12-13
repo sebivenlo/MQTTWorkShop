@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="chatbox.FXMLDocumentController">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <ListView fx:id="lvChatLog" layoutX="34.0" layoutY="168.0" prefHeight="190.0" prefWidth="553.0" />
+      <Label layoutX="32.0" layoutY="139.0" text="Messages :" />
+      <Button fx:id="btnSend" layoutX="504.0" layoutY="399.0" mnemonicParsing="false" onAction="#Publish" prefHeight="100.0" prefWidth="79.0" text="Send" />
+      <TextArea fx:id="tbMessage" layoutX="34.0" layoutY="367.0" prefHeight="157.0" prefWidth="459.0" />
+      <Button fx:id="btnConnect" layoutX="32.0" layoutY="107.0" mnemonicParsing="false" onAction="#Connect" text="Connect" />
+      
+      <Button fx:id="btnJoin" layoutX="347.0" layoutY="107.0" mnemonicParsing="false" onAction="#Subscribe" text="Subscribe" />
+      <Button fx:id="btnDisconnect" layoutX="101.0" layoutY="107.0" mnemonicParsing="false" onAction="#Disconnect" text="Disconnect" />
+      <TextField fx:id="tbTopic" layoutX="189.0" layoutY="108.0" />
+      <TextField id="userIdField" fx:id="tbUserId" layoutX="102.0" layoutY="27.0" />
+      <TextField fx:id="tbIpAdress" layoutX="102.0" layoutY="62.0" />
+      <Label layoutX="32.0" layoutY="31.0" text="UserId:" />
+      <Label layoutX="34.0" layoutY="66.0" text="ip-adress:" />
+    </children>
+</AnchorPane>
