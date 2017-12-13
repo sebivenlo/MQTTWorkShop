@@ -22,6 +22,8 @@ And open the project in your favourite IDE ( Netbeans project file is included )
 
 The assignment is to implement a MQTT ChatBoxClient. there are TODO's throughout the project where functionality is missing. Please RTFM (a.k.a. documentation) for more instructions. Good luck and have fun.
 
+The client has to be connected to an IP adress, we will provide this during the workshop.
+
 # Acceptence criteria
 The client should be able to... :
 * connect to a broker
