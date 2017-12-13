@@ -21,7 +21,5 @@ public class MessageEvent extends ActionEvent{
         this.topic = topic;
         this.message = message;        
     }
-    
 
-    
 }

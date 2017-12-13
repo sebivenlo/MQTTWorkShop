@@ -8,10 +8,13 @@ package chatbox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EventListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.EventListenerList;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -21,24 +24,25 @@ public class ChatCallback implements MqttCallback {
 
     
     @Override
-    public void connectionLost(Throwable thrwbl) {
-        //System.out.println("Connection was lost");
+    public void connectionLost(Throwable thrwbl) { 
+        try {
+            throw thrwbl;
+        } catch (Throwable ex) {
+            Logger.getLogger(ChatCallback.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void messageArrived(String string, MqttMessage mm) throws Exception {
         System.out.println(string + " : " + mm.toString());
         MessageEvent me = new MessageEvent(this, 0, "", string, mm.toString());
-        //hier crasht de app bij het doorsturen. waarschijnlijk gaat er iets mis in het vuren van dit event
-        
         FXMLDocumentController Listener = (FXMLDocumentController)xxxListeners.getListenerList()[1];
         Listener.actionPerformed(me);
     }
 
     @Override
     public void deliveryComplete(IMqttDeliveryToken imdt) {
-        System.out.println("Message Delivery Completed");
-        
+        throw new NotImplementedException();
     }
 
     EventListenerList xxxListeners = new EventListenerList();
