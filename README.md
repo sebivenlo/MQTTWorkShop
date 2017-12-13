@@ -18,23 +18,11 @@ git clone git@github.com:sebivenlo/MQTTWorkShop.git
 
 And open the project in your favourite IDE ( Netbeans project file is included )
 
-## Final touches
-
-Please open the project inside the folder :  /020Assignment/ .
-
-Inside this folder there is also a .jar file. You need this file and please include that into the project as an library 
-
-in Netbeans this is done like: 
-* right click Libraries in your project
-* Add Library
-* Create...
-* Name the library : PAHO
-* Now add the jar to this library and press OK.
-* Don't forget to actually add this library to the project.
-
 ## Assignment
 
 The assignment is to implement a MQTT ChatBoxClient. there are TODO's throughout the project where functionality is missing. Please RTFM (a.k.a. documentation) for more instructions. Good luck and have fun.
+
+The client has to be connected to an IP adress, we will provide this during the workshop.
 
 # Acceptence criteria
 The client should be able to... :
@@ -43,3 +31,7 @@ The client should be able to... :
 * subscribe to a topic
 * publish to a topic
 * transmit messages like described in the documentation.
+
+# Broker
+
+The mqtt broker that is used here is mosquitto, which you can download here ; http://mosquitto.org/download/ . One of the big benefits is that mosquitto is available for a lot of platforms so if you want to setup a broker for yourself, please try to do so. 
