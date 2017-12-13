@@ -5,8 +5,6 @@
  */
 package chatbox;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.EventListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +12,6 @@ import javax.swing.event.EventListenerList;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *

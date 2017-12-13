@@ -5,8 +5,6 @@
  */
 package chatbox;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.EventListener;
 import javax.swing.event.EventListenerList;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;

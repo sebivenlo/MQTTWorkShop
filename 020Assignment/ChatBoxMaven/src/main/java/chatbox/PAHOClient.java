@@ -5,14 +5,7 @@
  */
 package chatbox;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
@@ -32,8 +25,8 @@ public class PAHOClient {
      * using the ipAdress string and clientID string. please note, that the
      * ipAdress should be prefixed with "tcp://" and has to connect to port
      * 1883. (if you want to connect to a different host it might be possible
-     * that the port has to change aswell!)
-     * @param ipAdress ip adress the client should connect to
+     * that the port has to change as well!)
+     * @param ipAdress ip address the client should connect to
      * @param clientID the name the user gets.
      */
     public PAHOClient(String ipAdress, String clientID) {
