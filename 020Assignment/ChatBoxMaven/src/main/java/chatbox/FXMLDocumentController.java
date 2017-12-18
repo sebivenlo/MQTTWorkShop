@@ -16,7 +16,7 @@ import javafx.scene.control.*;
 
 /**
  *
- * @author Tom & Herm
+ * @author Tom Verstraten & Herm Lecluse
  */
 public class FXMLDocumentController implements Initializable, ActionListener {
 

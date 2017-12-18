@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 
 /**
  *
- * @author Tom & Herm
+ * @author Tom Verstraten & Herm Lecluse
  */
 public class MessageEvent extends ActionEvent{
     
