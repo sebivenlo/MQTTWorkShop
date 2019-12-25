@@ -14,7 +14,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 /**
  * call back for the chat box.
  * provides functionality for updating the chat box when new messages arrive.
- * @author Tom & Herm
+ * @author Tom Verstraten & Herm Lecluse
  */
 public class ChatCallback implements MqttCallback {
 

@@ -15,7 +15,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
  *
- * @author Tom & Herm
+ * @author Tom Verstraten & Herm Lecluse
  */
 public class ChatCallback implements MqttCallback {
 
